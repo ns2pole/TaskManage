@@ -1,15 +1,17 @@
 package com.example.taskmanage.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Entity
 @Getter
 @Setter
-@Table(name = "tasks")
-public class Task {
-    @Id 
+@Table(name = "divisions")
+public class Division {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 }

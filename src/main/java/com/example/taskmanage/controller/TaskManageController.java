@@ -1,24 +1,22 @@
 package com.example.taskmanage.controller;
 
-import com.example.taskmanage.model.Task;
-import com.example.taskmanage.repository.TaskRepository;
+import com.example.taskmanage.model.Division;
+import com.example.taskmanage.repository.DivisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
 public class TaskManageController {
     @Autowired
-    TaskRepository taskRepository;
+    DivisionRepository divisionRepository;
     @GetMapping("/")
     public String index(Model model) {
         String str = "hello";
-        Optional<Task> ot = taskRepository.findById(1);
-        Task t = ot.get();
-        model.addAttribute("message", t.getName());
+
+        Division d = divisionRepository.findById(2).get();
+        model.addAttribute("message", d.getName());
         return "index";
     }
 }
