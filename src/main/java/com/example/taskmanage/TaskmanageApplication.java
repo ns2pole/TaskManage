@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("com.example.taskmanage.model")
-@EnableJpaRepositories("com.example.taskmanage.repository")
 public class TaskmanageApplication {
 
 	public static void main(String[] args) {
