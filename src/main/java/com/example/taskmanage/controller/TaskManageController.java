@@ -1,23 +1,23 @@
 package com.example.taskmanage.controller;
 
-import com.example.taskmanage.model.Task;
-import com.example.taskmanage.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.logging.Logger;
+import java.util.Map;
 
 @Controller
 public class TaskManageController {
     @Autowired
-    TaskRepository taskRepository;
+    private JdbcTemplate jdbcTemplate;
+
     @GetMapping("/")
     public String index(Model model) {
-        String str = "hello";
-        Task d = taskRepository.findById(1).get();
-        model.addAttribute("message", d.id);
+        String sql = "SELECT * FROM tasks WHERE id = 2";
+        Map<String, Object> result = jdbcTemplate.queryForMap(sql);
+        model.addAttribute("taskName", result.get("name"));
         return "index";
     }
 }
