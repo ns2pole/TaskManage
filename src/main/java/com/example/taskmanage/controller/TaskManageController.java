@@ -1,25 +1,34 @@
 package com.example.taskmanage.controller;
 
+import com.example.taskmanage.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class TaskManageController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private TaskRepository taskRepository;
 
     @GetMapping("/")
     public String index(Model model) {
-        String sql = "SELECT * FROM tasks";
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
-        System.out.println(result);
-        model.addAttribute("tasks", result);
-        return "index";
+        model.addAttribute("tasks", taskRepository.findAll());
+        return "/task/index";
+    }
+
+    @GetMapping("/task/create")
+    public String create(Model model) {
+        return "/task/create";
+    }
+
+    @PostMapping("/task/create")
+    public String saveTask(@RequestParam String name, Model model) {
+        taskRepository.create(name);
+        return "redirect:/";
     }
 }
