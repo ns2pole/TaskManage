@@ -14,8 +14,7 @@ public class TaskRepository {
 
     public List<Map<String, Object>> findAll() {
         String sql = "SELECT * FROM TASKS";
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
-        return result;
+        return jdbcTemplate.queryForList(sql);
     }
 
     public void create(String name) {
@@ -23,5 +22,9 @@ public class TaskRepository {
         jdbcTemplate.update(sql, name);
     }
 
+    public void delete(int id) {
+        String sql = "DELETE FROM TASKS WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 
 }

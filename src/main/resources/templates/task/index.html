@@ -24,7 +24,11 @@
         <td th:text="${task.planminute}"></td>
         <td th:text="${task.actualminute}"></td>
         <td><a th:href="@{/task/edit/{id}(id=${task.id})}">Edit</a></td>
-        <td><a th:href="@{/task/delete/{id}(id=${task.id})}">Delete</a></td>
+        <td>
+            <form th:action="@{/task/delete/{id}(id=*{task.id})}"} method="post">
+                <button onclick="submit">削除</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

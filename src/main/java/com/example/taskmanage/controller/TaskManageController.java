@@ -31,4 +31,10 @@ public class TaskManageController {
         taskRepository.create(name);
         return "redirect:/";
     }
+
+    @PostMapping("/task/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        taskRepository.delete(id);
+        return "redirect:/";
+    }
 }
