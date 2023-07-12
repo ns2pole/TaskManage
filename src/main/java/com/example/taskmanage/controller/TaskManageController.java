@@ -17,6 +17,7 @@ public class TaskManageController {
 
     @GetMapping("/")
     public String index(Model model) {
+
         model.addAttribute("tasks", taskRepository.findAll());
         return "/task/index";
     }
@@ -26,6 +27,12 @@ public class TaskManageController {
         return "/task/create";
     }
 
+    @GetMapping("/task/edit/{id}")
+    public String editTask(@PathVariable int id) {
+        return "redirect:/";
+    }
+
+
     @PostMapping("/task/create")
     public String saveTask(@RequestParam String name, Model model) {
         taskRepository.create(name);
@@ -33,7 +40,7 @@ public class TaskManageController {
     }
 
     @PostMapping("/task/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
+    public String deleteTask(@PathVariable int id) {
         taskRepository.delete(id);
         return "redirect:/";
     }
