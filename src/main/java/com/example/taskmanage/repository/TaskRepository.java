@@ -17,9 +17,13 @@ public class TaskRepository {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public void create(String name) {
-        String sql = "INSERT INTO TASKS (name) VALUES (?)";
-        jdbcTemplate.update(sql, name);
+    public Map<String, Object> findById(int id) {
+        String sql = "SELECT * FROM TASKS WHERE id = ?";
+        return jdbcTemplate.queryForMap(sql, id);
+    }
+    public void create(String name, String planminute) {
+        String sql = "INSERT INTO TASKS (name, planminute) VALUES (?,?)";
+        jdbcTemplate.update(sql, name, Integer.parseInt(planminute));
     }
 
     public void delete(int id) {

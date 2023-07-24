@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Task</title>
+</head>
+<body>
+<h1>Edit Task</h1>
+<form action="#" th:action="@{/task/edit/__${id}__}" method="post">
+    <p>Name: <input type="text" th:value="${name}" name="name"/></p>
+    <p>PlanMinute: <input type="text" th:value="${planminute}" name="planminute"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>
