@@ -38,7 +38,6 @@ public class TaskManageController {
         Map<String, Object> task = taskRepository.findById(id);
         model.addAttribute("name", task.get("name"));
         model.addAttribute("planminute", task.get("planminute"));
-        model.addAttribute("id", id);
         return "/task/edit";
     }
 
